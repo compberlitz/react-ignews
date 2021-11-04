@@ -32,8 +32,8 @@ export default function Posts({posts}: PostsProps){
                 <div className={styles.postList}>
                     {
                         posts.map(post => (
-                            <Link href={`${session?.activeSubscription ? '/posts/' : '/posts/preview/'}${post.slug}`}>
-                                <a key={post.slug}>
+                            <Link key={post.slug} href={`${session?.activeSubscription ? '/posts/' : '/posts/preview/'}${post.slug}`}>
+                                <a>
                                     <time>{post.updatedAt}</time>
                                     <strong>{post.title}</strong>
                                     <p>{post.except}</p>
@@ -67,6 +67,7 @@ export const getStaticProps: GetStaticProps = async () => {
                 month: 'long',
                 year: 'numeric'
             })
+            //updatedAt: new Date(post.last_publication_date)
         }
     });
 
